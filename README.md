@@ -47,12 +47,14 @@ flights:
       method: oauth
       project: flights-project-707
       dataset: flights_prd
+      threads: 10
       location: EU # Optional, one of US or EU
     dev:
       type: bigquery
       method: oauth
       project: flights-project-707
       dataset: flights_dev_hg
+      threads: 10
       location: EU # Optional, one of US or EU
   target: dev
 ```
