@@ -120,7 +120,7 @@ A new browser tab should open with documentation on the project and the resultin
 The project overview shows the sources and models that are defined in the SQL files.
 This overview gives documentation and column definitions, but also the original SQL queries and the compiled versions.
 The database overview gives the same results but shows it like a database explorer.
-All the way in the bottom-right corner you can find the lineage tool, giving an overview of how models or tables related to each other. 
+All the way in the bottom-right corner you can find the lineage tool, giving an overview of how models or tables related to each other. The documentation is just exported as a static HTML page, so this can be easily shared with the whole organization.
 
 ![](images/dbt_lineage.png)
 
