@@ -102,7 +102,7 @@ The next step is transforming the data into something interesting!
 ## Transform data
 
 Our queries in `models/transform` are quite similar to our load queries.
-The biggest different is that now `ref()` is used to referenced to data models: this is [the most important function](https://docs.getdbt.com/docs/ref) in dbt.
+The biggest different is that now `ref()` is used to reference to data models: this is [the most important function](https://docs.getdbt.com/docs/ref) in dbt.
 `enriched_flights.sql` enriches the flights table by combining the sources tables and `flights_per_carriers.sql`.
 The schema definition is missing definitions and tests for `enriched_flights`, not agreeing with the [dbt coding conventions](https://github.com/fishtown-analytics/corp/blob/master/dbt_coding_conventions.md) -- my bad!
 
@@ -130,6 +130,6 @@ All the way in the bottom-right corner you can find the lineage tool, giving an 
 This tutorial showed you the basics of dbt with BigQuery.
 dbt supports many other databases and technologies like Presto, Microsoft SQL Server and Postgres.
 Our team has [recently](https://godatadriven.com/blog/godatadriven-open-source-contribution-for-q4-2019/) extended the Spark (and even our CTO has [chimed in](https://github.com/fishtown-analytics/dbt-spark/pull/43)).
-Read the [dbt blog](https://blog.getdbt.com/what--exactly--is-dbt-/) for more background or go to directly to the [documentation](https://docs.getdbt.com/docs/documentation)!
+Read the [dbt blog](https://blog.getdbt.com/what--exactly--is-dbt-/) for more background or go directly to the [documentation](https://docs.getdbt.com/docs/documentation)!
 
 You can find the code and data for this tutorial [here](https://github.com/hgrif/dbt_tutorial).
