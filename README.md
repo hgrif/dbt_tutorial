@@ -1,11 +1,11 @@
 # DBT tutorial
 
 Building data warehouses and doing analytics is still an unsolved problem at many companies.
-Luckily, live is getting easier in the current age of [~~ETL~~ ELT](https://www.guru99.com/etl-vs-elt.html).
-Cloud providers provide scalable databases like Snowflake and BigQuery; there is less work in loading data with tools like [Stitch](http://stitchdata.com/); and there are many BI tools.
+Luckily, life is getting easier in the current age of [~~ETL~~ ELT](https://www.guru99.com/etl-vs-elt.html).
+Cloud providers provide scalable databases like Snowflake and BigQuery, there is less work in loading data with tools like [Stitch](http://stitchdata.com/), and there are many BI tools.
 
-dbt is an analytics engineering tool for and is one of the pieces of this puzzle.
-It aims to "enables data analysts and engineers to transform data in their warehouses more effectively".
+dbt is an analytics engineering tool and is one of the pieces of this puzzle.
+It aims to "enable data analysts and engineers to transform data in their warehouses more effectively".
 This tutorial gives an introduction to dbt with Google BigQuery and shows a basic project.
 
 
@@ -13,13 +13,13 @@ This tutorial gives an introduction to dbt with Google BigQuery and shows a basi
 
 First, set up the data in the landing zone. 
 Clone [the repository](https://github.com/hgrif/dbt_tutorial) and navigate to `flights_data/`.
-There are three CSV's with flight data from the [U.S. Department of Transportation](https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236).
+There are three CSVes with flight data from the [U.S. Department of Transportation](https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236).
 One CSV contains flight statistics and the other two map airport IDs and carrier IDs to their names.
-Unzip the data, create a new project in Google Cloud, create a new bucket in Cloud Storage, and upload the CSV's.
+Create a new project in Google Cloud, make a new bucket in Cloud Storage, and upload the CSVes.
 
-The next step is to load the CSV's as tables in [BigQuery](https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-csv).
+The next step is to load the CSVes as tables in [BigQuery](https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-csv).
 Create a new dataset `landing_zone_flights` in BigQuery and create tables for each of the files.
-Schema detection will go fine for `airports.csv` and `flights.csv` ().
+Schema detection will go fine for `airports.csv` and `flights.csv`.
 For `carriers.csv` you will have to manually set `Code` and `Description` as column names, and set it to skip 1 header row under Advanced Options.
 Keep on clicking and create two more datasets to the project for our DEV and PRD environment: `flights_prd` and `flights_dev_hg`.
 (Replace `hg` by your own initials and check the location for both datasets.)
@@ -33,11 +33,13 @@ You should now have three datasets and three tables in `landing_zone_flights`:
 ## Set up development environment
 
 With your data set up, it is time to set up the development environment.
-Create a new Python virtual environment with `dbt` installed via `pip` or `conda`.
+Create a new virtual environment with Python 3.6+ and install `dbt` with `pip` (installing with `conda` may not work).
 Open your dbt profile located at `~/.dbt/profiles.yml` and change it so that it points to your PRD and DEV environments.
 Check the [documentation](https://docs.getdbt.com/docs/profile-bigquery) for profile configuration instructions for BigQuery (don't forget the authorization!).
 
-My profile is `flights` and my default run target is `dev`:
+My profile is `flights` and my default run target is `dev`.
+You will have to change (at least) the project and dataset.
+Make sure that the location matches the location of your BigQuery datasets.
 
 ```
 flights:
@@ -61,6 +63,7 @@ flights:
 
 Your environment is now ready to go.
 Run `dbt run --profile flights` to populate our data warehouse.
+This instructs `dbt` to compile and execute the data models defined in `models/`.
 It should complete successfully:
 
 ![](images/dbt_run.png)
@@ -68,9 +71,8 @@ It should complete successfully:
 
 ## Load and test data sources
 
-You have now manually done the first two stages of the ELT process.
-The **extract** and **load** phase were done uploading the data in Cloud Storage and creating the landing zone tables in BigQuery.
-The first step of the **transformation** phase is harmonizing column names and fixes any incorrect types.
+The first step of the **transformation** phase is harmonizing column names and fixing any incorrect types.
+The **extract** and **load** phase were done manually via uploading the data in Cloud Storage and creating the landing zone tables in BigQuery.
 
 Navigate to `models/base` and inspect the SQL files.
 The code is fairly straightforward.
@@ -106,7 +108,7 @@ The biggest different is that now `ref()` is used to reference to data models: t
 `enriched_flights.sql` enriches the flights table by combining the sources tables and `flights_per_carriers.sql`.
 The schema definition is missing definitions and tests for `enriched_flights`, not agreeing with the [dbt coding conventions](https://github.com/fishtown-analytics/corp/blob/master/dbt_coding_conventions.md) -- my bad!
 
-dbt also has a documentation lineage tool to inspect how these transformations.
+dbt also has a documentation tool to inspect your transformations.
 Run the following commands to generate and serve the documentation:
 
 ```sh
@@ -129,7 +131,7 @@ All the way in the bottom-right corner you can find the lineage tool, giving an 
 
 This tutorial showed you the basics of dbt with BigQuery.
 dbt supports many other databases and technologies like Presto, Microsoft SQL Server and Postgres.
-Our team has [recently](https://godatadriven.com/blog/godatadriven-open-source-contribution-for-q4-2019/) extended the Spark (and even our CTO has [chimed in](https://github.com/fishtown-analytics/dbt-spark/pull/43)).
+Our team has [recently](https://godatadriven.com/blog/godatadriven-open-source-contribution-for-q4-2019/) extended the Spark functionality (and even our CTO has [chimed in](https://github.com/fishtown-analytics/dbt-spark/pull/43)).
 Read the [dbt blog](https://blog.getdbt.com/what--exactly--is-dbt-/) for more background or go directly to the [documentation](https://docs.getdbt.com/docs/documentation)!
 
 You can find the code and data for this tutorial [here](https://github.com/hgrif/dbt_tutorial).
