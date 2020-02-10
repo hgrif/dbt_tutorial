@@ -9,7 +9,7 @@ dbt helps with the transformation phase: it aims to "enable data analysts and en
 In the last years, the gap between data engineers and data analysts has become bigger.
 Engineers are using more complex tools and write, for instance, data pipelines using Apache Spark in Scala.
 On the other hand, analysts still prefer SQL and use no-code tooling that don't support engineering best practices like code versioning.
-dbt closes the gap by extending SQL and providing tooling around your data transformation tooling.
+dbt closes the gap by extending SQL and providing tooling around your data transformation models.
 This tutorial gives an introduction to dbt with Google BigQuery and shows a basic project.
 
 
