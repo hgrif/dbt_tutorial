@@ -3,9 +3,13 @@
 Building data warehouses and doing analytics is still an unsolved problem at many companies.
 Luckily, life is getting easier in the current age of [~~ETL~~ ELT](https://www.guru99.com/etl-vs-elt.html).
 Cloud providers provide scalable databases like Snowflake and BigQuery, there is less work in loading data with tools like [Stitch](http://stitchdata.com/), and there are many BI tools.
-
 dbt is an analytics engineering tool and is one of the pieces of this puzzle.
-It aims to "enable data analysts and engineers to transform data in their warehouses more effectively".
+
+dbt helps with the transformation phase: it aims to "enable data analysts and engineers to transform data in their warehouses more effectively".
+In the last years, the gap between data engineers and data analysts has become bigger.
+Engineers are using more complex tools and write, for instance, data pipelines using Apache Spark in Scala.
+On the other hand, analysts still prefer SQL and use no-code tooling that don't support engineering best practices like code versioning.
+dbt closes the gap by extending SQL and providing tooling around your data transformation tooling.
 This tutorial gives an introduction to dbt with Google BigQuery and shows a basic project.
 
 
@@ -132,6 +136,6 @@ All the way in the bottom-right corner you can find the lineage tool, giving an 
 This tutorial showed you the basics of dbt with BigQuery.
 dbt supports many other databases and technologies like Presto, Microsoft SQL Server and Postgres.
 Our team has [recently](https://godatadriven.com/blog/godatadriven-open-source-contribution-for-q4-2019/) extended the Spark functionality (and even our CTO has [chimed in](https://github.com/fishtown-analytics/dbt-spark/pull/43)).
-Read the [dbt blog](https://blog.getdbt.com/what--exactly--is-dbt-/) for more background or go directly to the [documentation](https://docs.getdbt.com/docs/documentation)!
+Read the [dbt blog](https://blog.getdbt.com/what--exactly--is-dbt-/) for more background, check out [how The Telegraph uses it](https://medium.com/the-telegraph-engineering/dbt-a-new-way-to-handle-data-transformation-at-the-telegraph-868ce3964eb4), or go directly to the [documentation](https://docs.getdbt.com/docs/documentation)!
 
 You can find the code and data for this tutorial [here](https://github.com/hgrif/dbt_tutorial).
