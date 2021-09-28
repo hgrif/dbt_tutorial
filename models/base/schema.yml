@@ -1,7 +1,7 @@
 version: 2
-
+# landing_zone_flights
 sources:
-  - name: landing_zone_flights
+  - name: dbt_flight_demo
     tables:
 
         - name: airports

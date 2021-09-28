@@ -1,0 +1,27 @@
+# default:
+#         target: dev
+#         outputs:
+#                 dev:
+#                         type: bigquery
+#                         method: oauth
+#                         project: prj-mz-n-demo-base-30b3
+#                         dataset: staging_kelowna
+flights:
+  outputs:
+    prd:
+      type: bigquery
+      method: oauth
+      project: prj-mz-n-demo-base-30b3
+      dataset: flights_prd
+      threads: 1
+      #location: EU # Optional, one of US or EU
+    dev:
+      type: bigquery
+      method: oauth
+      project: prj-mz-n-demo-base-30b3
+      dataset: flights_dev_hg
+      threads: 1
+      #location: EU # Optional, one of US or EU
+  target: dev                        
+
+

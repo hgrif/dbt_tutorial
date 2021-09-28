@@ -16,7 +16,7 @@ select
     actual_elapsed_time,
     distance
 from 
-    {{ source('landing_zone_flights', 'flights') }}
+    {{ source('dbt_flight_demo', 'flights') }}
 {% if target.name == 'dev' %}
     where fl_date <= '2019-01-03'
 {% endif %}
